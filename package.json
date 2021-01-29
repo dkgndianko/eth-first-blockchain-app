@@ -1,0 +1,26 @@
+{
+    "name": "Ether Todo",
+    "description": "A todo list written with Solidity",
+    "version": "0.0.1",
+    "main": "truffle-config.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "dev": "lite-server",
+        "test": "echo 'No test available' && exit 1"
+    },
+    "author": "Mouhamad Ndiankho THIAM",
+    "licence": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+        "bootstrap": "^4.6.0",
+        "chai": "^4.2.0",
+        "chai-as-promised": "^7.1.1",
+        "chai-bignumber": "^3.0.0",
+        "lite-server": "^2.6.1",
+        "nodemon": "^2.0.7",
+        "truffle": "^5.1.63",
+        "truffle-contract": "^4.0.31"
+    }
+}
