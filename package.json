@@ -1,5 +1,5 @@
 {
-    "name": "Ether Todo",
+    "name": "ether-todo",
     "description": "A todo list written with Solidity",
     "version": "0.0.1",
     "main": "truffle-config.js",
