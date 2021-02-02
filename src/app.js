@@ -88,9 +88,7 @@ App = {
         const completedTasks = $('#completedTaskList');
         const uncompletedTasks = $('#taskList');
         const tasks = await App.getTasks();
-        // console.log(tasks);
         tasks.forEach((task) => {
-            console.log('giving task ' + task.content);
             const taskContent = taskTemplate.clone();
             taskContent.find('.content').html(task.content);
             taskContent.find('input')
@@ -100,7 +98,7 @@ App = {
             (task.completed?completedTasks:uncompletedTasks).append(taskContent);
             taskContent.show();
         });
-        App.setLoading(true);
+        App.setLoading(false);
     },
     toggleCompleted: async () => {
 
@@ -111,16 +109,27 @@ App = {
     rederTasks: async () => {
 
     },
+    createTask: async () => {
+        console.log('maa ngui nii');
+        App.setLoading(true);
+        const content = $('#newTask').val();
+        if (content) {
+            await App.todoList.createTask(content, {from: App.account});
+            console.log('added '+ content + ". going to refresh the page");
+            window.location.reload();
+        }
+    },
     setLoading: (loading) => {
         App.loading = loading;
         const loader = $('#loader');
         const content = $('#content');
         if (loading) {
+            loader.show();
+            content.hide();
+        }
+        else {
             loader.hide();
             content.show();
-        }
-        else {loader.show();
-            content.hide();
         }
     }
 }

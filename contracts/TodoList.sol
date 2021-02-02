@@ -1,4 +1,5 @@
 pragma solidity ^0.5.16;
+pragma experimental ABIEncoderV2;
 
 
 contract TodoList {
@@ -11,6 +12,9 @@ contract TodoList {
     }
 
     mapping(uint => Task) public tasks;
+    event TaskCreated(
+        Task task
+    );
 
     constructor() public {
         createTask("Mouhamad's first task");
@@ -21,5 +25,6 @@ contract TodoList {
         taskCount++;
         Task memory task = Task(taskCount, _content, false);
         tasks[taskCount] = task;
+        emit TaskCreated(task);
     }
 }
