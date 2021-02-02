@@ -15,9 +15,14 @@ contract TodoList {
     event TaskCreated(
         Task task
     );
+    event TaskToggled(
+        uint id,
+        bool completed
+    );
 
     constructor() public {
         createTask("Mouhamad's first task");
+        createTask("Give credit to https://dappuniversity.com");
     }
 
 
@@ -26,5 +31,12 @@ contract TodoList {
         Task memory task = Task(taskCount, _content, false);
         tasks[taskCount] = task;
         emit TaskCreated(task);
+    }
+
+    function toggleCompleted(uint _id) public {
+        Task memory task = tasks[_id];
+        task.completed = !task.completed;
+        tasks[_id] = task;
+        emit TaskToggled(_id, task.completed);
     }
 }

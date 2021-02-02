@@ -5,17 +5,17 @@ App = {
         // Load app
         console.log("app loading ...");
         await App.loadWeb3();
-        const accounts = await App.getAccounts();
-        console.log(accounts);
+        // const accounts = await App.getAccounts();
+        // console.log(accounts);
         await App.loadAccount();
-        const todoListContract = await App.getContract();
-        console.log(todoListContract);
+        // const todoListContract = await App.getContract();
+        // console.log(todoListContract);
         await App.loadContract();
 
         App.render();
 
-        const tasks = await App.getTasks();
-        console.log(tasks);
+        // const tasks = await App.getTasks();
+        // console.log(tasks);
         App.loadTasks();
     },
     loadWeb3: async () => {
@@ -100,8 +100,11 @@ App = {
         });
         App.setLoading(false);
     },
-    toggleCompleted: async () => {
-
+    toggleCompleted: async (e) => {
+        App.setLoading(true);
+        const taskId = e.target.name;
+        await App.todoList.toggleCompleted(taskId, {from: App.account});
+        window.location.reload()
     },
     render: async () => {
         $('#account').html(App.account);
@@ -110,12 +113,10 @@ App = {
 
     },
     createTask: async () => {
-        console.log('maa ngui nii');
         App.setLoading(true);
         const content = $('#newTask').val();
         if (content) {
             await App.todoList.createTask(content, {from: App.account});
-            console.log('added '+ content + ". going to refresh the page");
             window.location.reload();
         }
     },
